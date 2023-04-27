@@ -1,0 +1,49 @@
+<!-- Nav tabs -->
+<div class="container-lg">
+
+	<div class="row align-items-start">
+		<div class="col-lg-12">
+
+			<ul class="nav nav-tabs mt-4 mb-5" id="myTab" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
+						type="button" role="tab" aria-controls="courses" aria-selected="true">Cursos</button>
+				</li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div class="tab-pane active" id="courses" role="tabpanel" aria-labelledby="courses-tab" tabindex="0">
+					<div class="card">
+						<div class="card-header">
+							<h5 *ngIf="!showForm">
+								<i class="bi bi-people-fill"></i>
+								Listar Cursos
+							</h5>
+							<h5 *ngIf="showForm">
+								<i class="bi bi-people-fill"></i>
+								Crear Cursos
+							</h5>
+							<div class="content-pull-right">	
+								<button *ngIf="!showForm" (click)="createCourse()" type="button" class="btn btn-success">
+									<i class="bi bi-person-plus-fill"></i>
+									Crear Curso
+								</button>
+								<button *ngIf="showForm" (click)="listCourses()" type="button" class="btn btn-dark">
+									<i class="bi bi-card-list"></i>
+									Listar Cursos
+								</button>	
+							</div>
+						</div>
+						<div class="card-body">
+							<app-list-courses *ngIf="!showForm" (editCourseEvent)="editCourse($event)"></app-list-courses>
+							<app-form-course *ngIf="showForm" [course]="courseData" [showForm]="showForm" (loadCourses)="listCourses()"></app-form-course>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
