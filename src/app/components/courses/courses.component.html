@@ -9,10 +9,6 @@
 					<button class="nav-link active" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
 						type="button" role="tab" aria-controls="courses" aria-selected="true">Cursos</button>
 				</li>
-				<li class="nav-item" role="presentation">
-					<button class="nav-link" id="cars-tab" data-bs-toggle="tab" data-bs-target="#cars" type="button"
-						role="tab" aria-controls="cars" aria-selected="false">Carros</button>
-				</li>
 			</ul>
 
 			<!-- Tab panes -->
@@ -29,9 +25,9 @@
 								Crear Cursos
 							</h5>
 							<div class="content-pull-right">	
-								<button *ngIf="!showForm" (click)="createUser()" type="button" class="btn btn-success">
+								<button *ngIf="!showForm" (click)="createCourse()" type="button" class="btn btn-success">
 									<i class="bi bi-person-plus-fill"></i>
-									Crear Usuario
+									Crear Curso
 								</button>
 								<button *ngIf="showForm" (click)="listCourses()" type="button" class="btn btn-dark">
 									<i class="bi bi-card-list"></i>
@@ -40,13 +36,12 @@
 							</div>
 						</div>
 						<div class="card-body">
-							<app-list-courses *ngIf="!showForm" (editUserEvent)="editUser($event)"></app-list-courses>
+							<app-list-courses *ngIf="!showForm" (editCourseEvent)="editCourse($event)"></app-list-courses>
 							<app-form-course *ngIf="showForm" [course]="courseData" [showForm]="showForm" (loadCourses)="listCourses()"></app-form-course>
 						</div>
 					</div>
 
 				</div>
-				<div class="tab-pane" id="cars" role="tabpanel" aria-labelledby="cars-tab" tabindex="0">...</div>
 			</div>
 		</div>
 	</div>

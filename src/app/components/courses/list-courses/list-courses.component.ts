@@ -11,12 +11,12 @@ import Swal from 'sweetalert2';
 })
 export class ListCoursesComponent implements OnInit {
 
-	users: Course[] = [];
+	courses: Course[] = [];
 
 	@Output() editCourseEvent = new EventEmitter();
 
 	constructor(
-		private userServices: CourseService
+		private courseServices: CourseService
 	) { }
 
 	ngOnInit() {
@@ -24,8 +24,8 @@ export class ListCoursesComponent implements OnInit {
 	}
 
 	listCourses() {
-		this.userServices.getAllCourses().subscribe((results: Course[]) => {
-			this.users = results;
+		this.courseServices.getAllCourses().subscribe((results: Course[]) => {
+			this.courses = results;
 		});
 	}
 
@@ -35,7 +35,7 @@ export class ListCoursesComponent implements OnInit {
 
 	deleteCourse(item: Course) {
 		Swal.fire({
-			title: 'Estas seguro de borrar este usuario?',
+			title: 'Estas seguro de borrar este curso?',
 			icon: 'question',
 			showCancelButton: true,
 			confirmButtonText: 'Borrar Registro',
@@ -43,8 +43,8 @@ export class ListCoursesComponent implements OnInit {
 		}).then(async (result) => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
-				this.userServices.deleteCourse(item.id).subscribe((results: Response) => {
-					Swal.fire('Borrado Correctamente!', results.message, 'success');
+				await this.courseServices.deleteCourse(item.id).subscribe((response: any) => {
+					Swal.fire('Borrado Correctamente!', response.message, 'success');
 					this.listCourses();
 				});
 			}
